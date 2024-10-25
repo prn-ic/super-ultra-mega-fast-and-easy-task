@@ -1,0 +1,6 @@
+@EffectiveDelivery.WebApi_HostAddress = http://localhost:5211
+
+GET {{EffectiveDelivery.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
