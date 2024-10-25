@@ -1,9 +1,9 @@
 using EffectiveDelivery.Application.Common.Data;
 using EffectiveDelivery.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace EffectiveDelivery.Infrastructure;
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyInjection
 {
@@ -21,10 +21,12 @@ public static class DependencyInjection
             {
                 o.UseSqlite(connection);
                 o.UseSnakeCaseNamingConvention();
+                o.UseLazyLoadingProxies();
             }
         );
 
         services.AddScoped<IAppDbContext>(p => p.GetRequiredService<AppDbContext>());
+        services.AddScoped<AppDbContextInitializer>();
 
         return services;
     }

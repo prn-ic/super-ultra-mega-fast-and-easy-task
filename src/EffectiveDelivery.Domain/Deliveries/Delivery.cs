@@ -7,9 +7,11 @@ namespace EffectiveDelivery.Domain.Deliveries;
 public class Delivery : BaseEntity<int>
 {
     public double Weight { get; private set; }
-    public Address Address { get; private set; }
+    public virtual Address Address { get; private set; }
     public DateTime DeliveryTime { get; private set; }
-
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
+    protected Delivery() { }
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
     public Delivery(double weight, Address address, DateTime deliveryTime)
     {
         GuardException.ThrowIfDeliveryWeightIsInvalid(weight);

@@ -32,7 +32,7 @@ public class GetDeliveriesQueryHandler
         var deliveries = await _context
             .Deliveries.Where(x =>
                 x.Address.District.Equals(request.Filter.CityDistrict)
-                || x.DeliveryTime >= request.Filter.FirstDeliveryDateTime
+                && x.DeliveryTime >= request.Filter.FirstDeliveryDateTime
             )
             .ToListAsync();
 
